@@ -7,4 +7,7 @@
     <color name="colorDen">#000000</color>
     <color name="colorTrang">#FFFFFF</color>
     <color name="colorXanhdatroi">#03A9F4</color>
+    <color name="colorDo">#FA0000</color>
+    <color name="colorXanhlacay">#4CAF50</color>
+    <color name="colorXam">#ECF1EC</color>
 </resources>

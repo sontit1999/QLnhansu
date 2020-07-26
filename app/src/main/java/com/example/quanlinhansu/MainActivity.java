@@ -2,6 +2,8 @@ package com.example.quanlinhansu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -11,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.quanlinhansu.base.BaseActivity;
 import com.example.quanlinhansu.databinding.ActivityMainBinding;
+import com.example.quanlinhansu.fragment.PhongBanFragment;
+import com.example.quanlinhansu.fragment.chucvu.ChucVuFragment;
+import com.example.quanlinhansu.fragment.nhanvien.NhanVienFramgne;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,15 +40,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
               public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                   switch (menuItem.getItemId()){
                       case R.id.menuphongban:
-                          Toast.makeText(MainActivity.this, "Phòng ban", Toast.LENGTH_SHORT).show();
+                          addFragmet(new PhongBanFragment());
+                          binding.tvTitle.setText("Phòng ban");
                           binding.drawler.closeDrawers();
                           break;
                       case R.id.menunhanvien:
+                          binding.tvTitle.setText("Nhân viên");
+                          addFragmet(new NhanVienFramgne());
                           Toast.makeText(MainActivity.this, "Nhân viên", Toast.LENGTH_SHORT).show();
                           binding.drawler.closeDrawers();
                           break;
                       case R.id.menuchucvu:
-                          Toast.makeText(MainActivity.this, "Chức vụ", Toast.LENGTH_SHORT).show();
+                          binding.tvTitle.setText("Chức vụ");
+                          addFragmet(new ChucVuFragment());
                           binding.drawler.closeDrawers();
                           break;
                       case R.id.menulogout:
@@ -60,5 +69,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                   binding.drawler.openDrawer(Gravity.LEFT);
               }
           });
+
+          // set default fragment
+        addFragmet(new PhongBanFragment());
+    }
+    public void addFragmet(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.frameLayout,fragment).commit();
     }
 }
