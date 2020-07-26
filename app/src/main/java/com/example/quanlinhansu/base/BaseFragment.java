@@ -1,4 +1,4 @@
-package com.example.covid19.base;
+package com.example.quanlinhansu.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-public abstract class BaseFragment<B extends ViewDataBinding,VM extends com.example.covid19.base.BaseViewmodel> extends Fragment {
+public abstract class BaseFragment<B extends ViewDataBinding,VM extends BaseViewmodel> extends Fragment {
     protected B binding;
     protected VM viewmodel;
     public  abstract Class<VM> getViewmodel();

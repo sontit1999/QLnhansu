@@ -1,4 +1,4 @@
-package com.example.covid19.base;
+package com.example.quanlinhansu.base;
 
 
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public abstract class BaseActivity<B extends ViewDataBinding,VM extends com.example.covid19.base.BaseViewmodel> extends AppCompatActivity {
+public abstract class BaseActivity<B extends ViewDataBinding,VM extends BaseViewmodel> extends AppCompatActivity {
     protected B binding;
     protected VM viewmodel;
     public abstract Class<VM> getViewmodel();

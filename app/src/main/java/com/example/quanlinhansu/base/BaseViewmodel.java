@@ -1,4 +1,4 @@
-package com.example.covid19.base;
+package com.example.quanlinhansu.base;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.example.covid19.base;
+package com.example.quanlinhansu.base;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -16,7 +16,7 @@ public abstract class BaseAdapter<T ,VB extends ViewDataBinding> extends Recycle
     public abstract int getLayoutId();
     public abstract int getIdVariable();
     public abstract int getIdVariableOnclick();
-    public abstract com.example.covid19.base.CBAdapter getOnclick();
+    public abstract CBAdapter getOnclick();
 
     public void setList(ArrayList<T> arrayList){
         this.datalist = arrayList;
@@ -64,7 +64,7 @@ public abstract class BaseAdapter<T ,VB extends ViewDataBinding> extends Recycle
         public void setVariable(int id,T t){
             this.binding.setVariable(id,t);
         }
-        public void setClickAdapter(int id, com.example.covid19.base.CBAdapter t){
+        public void setClickAdapter(int id, CBAdapter t){
             this.binding.setVariable(id,t);
         }
     }
