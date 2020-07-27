@@ -1,6 +1,8 @@
 package com.example.quanlinhansu.model;
 
-public class NhanVien {
+import java.io.Serializable;
+
+public class NhanVien implements Serializable {
     String manv;
     String tennv;
     String diachi;
