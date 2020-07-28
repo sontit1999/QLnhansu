@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                       case R.id.menulogout:
                           Toast.makeText(MainActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
                           binding.drawler.closeDrawers();
+                          finish();
                           break;
                   }
                   return false;
