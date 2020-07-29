@@ -209,6 +209,6 @@ public class ChucVuFragment extends BaseFragment<FragChucvuBinding,ChucVuViewMod
     public void onResume() {
         super.onResume();
         Log.d("sondz","onresume phong ban");
-        listener.onResume(1);
+        listener.onResume(3);
     }
 }

@@ -28,7 +28,6 @@
                     <TextView
                         android:layout_width="120dp"
                         android:text="Mã nv"
-
                         android:textSize="@dimen/textSize_content"
                         android:textColor="@color/colorDen"
                         android:layout_height="wrap_content"/>

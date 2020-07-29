@@ -35,6 +35,7 @@
                     android:background="@drawable/bg_edittext"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
+                    android:maxLines="1"
                     android:padding="5dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -53,6 +54,7 @@
                     android:id="@+id/edtTenPB"
                     android:layout_width="0dp"
                     android:padding="5dp"
+                    android:maxLines="1"
                     android:background="@drawable/bg_edittext"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"

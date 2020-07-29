@@ -32,6 +32,7 @@
                 <EditText
                     android:id="@+id/edtMaCV"
                     android:layout_width="0dp"
+                    android:maxLines="1"
                     android:background="@drawable/bg_edittext"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -53,6 +54,7 @@
                     android:id="@+id/edtTenCV"
                     android:layout_width="0dp"
                     android:padding="5dp"
+                    android:maxLines="1"
                     android:background="@drawable/bg_edittext"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
