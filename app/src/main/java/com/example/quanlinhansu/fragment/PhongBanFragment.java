@@ -1,17 +1,24 @@
 package com.example.quanlinhansu.fragment;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quanlinhansu.R;
 import com.example.quanlinhansu.base.BaseFragment;
+import com.example.quanlinhansu.callback.ActionbarListener;
 import com.example.quanlinhansu.callback.CallbackPB;
 import com.example.quanlinhansu.databinding.FragPhongbanBinding;
+import com.example.quanlinhansu.fragment.detailphong.DetailsPhongFragment;
 import com.example.quanlinhansu.model.ChucVu;
 import com.example.quanlinhansu.model.PhongBan;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,9 +34,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhongBanFragment extends BaseFragment<FragPhongbanBinding,PhongBanViewModel> {
+    ActionbarListener listener;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("phongban");
     ArrayList<PhongBan> list = new ArrayList<>();
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        listener = (ActionbarListener) getContext();
+    }
+
     @Override
     public Class<PhongBanViewModel> getViewmodel() {
         return PhongBanViewModel.class;
@@ -79,6 +93,9 @@ public class PhongBanFragment extends BaseFragment<FragPhongbanBinding,PhongBanV
                  // Toast.makeText(getActivity(), "Click " + phongBan.getTenPhongBan(), Toast.LENGTH_SHORT).show();
                   binding.edtMaPB.setText(phongBan.getMaPhongBan());
                   binding.edtTenPB.setText(phongBan.getTenPhongBan());
+                  DetailsPhongFragment detailsPhongFragment = new DetailsPhongFragment();
+                  detailsPhongFragment.setphong(phongBan);
+                  getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(getTag()).replace(R.id.frameLayout,detailsPhongFragment).commit();
               }
           });
           event();
@@ -91,7 +108,7 @@ public class PhongBanFragment extends BaseFragment<FragPhongbanBinding,PhongBanV
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+                // whenever data 2at this location is updated.
                // Toast.makeText(getActivity(), "So phong :" + dataSnapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
 
                 list.clear();
@@ -190,5 +207,18 @@ public class PhongBanFragment extends BaseFragment<FragPhongbanBinding,PhongBanV
             }
             return false;
         }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("sondz" , "oncreate view phong ban");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("sondz","onresume phong ban");
+        listener.onResume(1);
     }
 }

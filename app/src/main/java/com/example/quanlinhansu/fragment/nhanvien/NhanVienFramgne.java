@@ -4,12 +4,17 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quanlinhansu.R;
 import com.example.quanlinhansu.activity.AddNhanVienActivity;
 import com.example.quanlinhansu.base.BaseFragment;
+import com.example.quanlinhansu.callback.ActionbarListener;
 import com.example.quanlinhansu.callback.CallbackNV;
 import com.example.quanlinhansu.databinding.FragNhanvieBinding;
 import com.example.quanlinhansu.model.NhanVien;
@@ -35,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NhanVienFramgne extends BaseFragment<FragNhanvieBinding,NhanVienViewModel> {
+    ActionbarListener listener;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("nhanvien");
     ArrayList<NhanVien> list = new ArrayList<>();
@@ -42,7 +49,11 @@ public class NhanVienFramgne extends BaseFragment<FragNhanvieBinding,NhanVienVie
     public Class<NhanVienViewModel> getViewmodel() {
         return NhanVienViewModel.class;
     }
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        listener = (ActionbarListener) getContext();
+    }
     @Override
     public int getLayoutID() {
         return R.layout.frag_nhanvie;
@@ -196,5 +207,17 @@ public class NhanVienFramgne extends BaseFragment<FragNhanvieBinding,NhanVienVie
 //            }
 //        },2020,7,27);
 //        dialog.show();
+    }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("sondz" , "oncreate view nhanvien");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("sondz","onresume phong ban");
+        listener.onResume(2);
     }
 }

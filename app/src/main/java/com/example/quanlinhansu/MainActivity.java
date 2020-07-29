@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.quanlinhansu.base.BaseActivity;
+import com.example.quanlinhansu.callback.ActionbarListener;
 import com.example.quanlinhansu.databinding.ActivityMainBinding;
 import com.example.quanlinhansu.fragment.PhongBanFragment;
 import com.example.quanlinhansu.fragment.chucvu.ChucVuFragment;
@@ -20,7 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel> {
+public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel> implements ActionbarListener {
 
     @Override
     public Class<MainViewModel> getViewmodel() {
@@ -76,6 +78,33 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
     }
     public void addFragmet(Fragment fragment){
         FragmentManager manager = getSupportFragmentManager();
+
         manager.beginTransaction().replace(R.id.frameLayout,fragment).commit();
+    }
+    public void addFragmenthaveBackstack(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+
+        manager.beginTransaction().replace(R.id.frameLayout,fragment).addToBackStack(fragment.getTag()).commit();
+    }
+    @Override
+    public void onBackPressed() {
+        Log.d("sondz" , "back press!");
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onResume(int type) {
+        switch (type){
+            case 1:
+                binding.tvTitle.setText("Phòng ban");
+                break;
+
+            case 2:
+                binding.tvTitle.setText("Nhân viên");
+                break;
+            case 3:
+                binding.tvTitle.setText("Chức vụ");
+                break;
+        }
     }
 }
